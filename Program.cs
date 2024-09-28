@@ -4,7 +4,7 @@ using Microsoft.VisualBasic;
 
 Console.WriteLine("Hello, World!");
 
-Console.WriteLine(Day2Part2());
+Console.WriteLine(Day3Part1());
 
 static List<int> AllIndexesOf(string str, string value)
 {
@@ -106,7 +106,8 @@ static int GetMinimumColourThreshold(string line, string colour)
         var numberString = line.Substring(spaceIndex, index - 1 - spaceIndex);
         var numberColour = int.Parse(numberString);
 
-        if (lastNumber < numberColour){
+        if (lastNumber < numberColour)
+        {
             lastNumber = numberColour;
         }
     }
@@ -151,7 +152,7 @@ int Day2Part2()
     int result = 0;
     while ((line = reader.ReadLine()) != null)
     {
-        int power = GetMinimumColourThreshold(line, "red") * 
+        int power = GetMinimumColourThreshold(line, "red") *
             GetMinimumColourThreshold(line, "blue") *
             GetMinimumColourThreshold(line, "green");
 
@@ -160,4 +161,186 @@ int Day2Part2()
     }
 
     return result;
+}
+
+int Day3Part1()
+{
+    var reader = new StreamReader("input-puzzle-3.txt");
+    string line, lastLine = "";
+    int result = 0;
+    List<PartNumber> lastLineNotUsedNumbers = new List<PartNumber>();
+    List<List<ConsoleItem>> consoleCharacterLines = new List<List<ConsoleItem>>();
+    while ((line = reader.ReadLine()) != null)
+    {
+        List<ConsoleItem> consoleCharacters = new List<ConsoleItem>();
+        PartNumber? number = null;
+        bool symbolSet = false;
+        int indexCounter = 0;
+        List<PartNumber> currentLineNotUsedNumbers = new List<PartNumber>();
+        foreach (var character in line)
+        {
+            if (char.IsNumber(character))
+            {
+                if (number == null)
+                {
+                    number = new PartNumber();
+                    number.Index = indexCounter;
+                }
+                number.ValueString += character;
+            }
+            else if (character == '.')
+            {
+                if (number != null)
+                {
+                    if (symbolSet)
+                    {
+                        result += number.Value;
+                        consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.DarkBlue, Index = number.Index });
+                    }
+                    else
+                    {
+                        //check former line if symbol is available
+                        if (!String.IsNullOrEmpty(lastLine))
+                        {
+                            if (lastLine.Substring(number.SearchStartIndex, number.SearchLength).Any(c => !char.IsDigit(c) && c != '.'))
+                            {
+                                result += number.Value;
+                                consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Blue, Index = number.Index });
+                            }
+                            else
+                            {
+                                currentLineNotUsedNumbers.Add(number);
+                                consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Red, Index = number.Index });
+                            }
+                        }
+                        else
+                        {
+                            currentLineNotUsedNumbers.Add(number);
+                            consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Red, Index = number.Index });
+                        }
+                    }
+                }
+                number = null;
+                symbolSet = false;
+                consoleCharacters.Add(new ConsoleItem { Text = character.ToString(), Colour = ConsoleColor.Black, Index = indexCounter });
+            }
+            else
+            {
+                var symbolConsoleColor = ConsoleColor.Yellow;
+                symbolSet = true;
+                if (number != null)
+                {
+                    result += number.Value;
+                    consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Cyan, Index = number.Index });
+                }
+                if (lastLineNotUsedNumbers.Any())
+                {
+                    foreach (var n in lastLineNotUsedNumbers)
+                    {
+                        if (!n.Added && n.IndexInRange(indexCounter))
+                        {
+                            result += n.Value;
+                            symbolConsoleColor = ConsoleColor.Green;
+                            consoleCharacterLines.Last().Where(i => i.Index == n.Index).FirstOrDefault().Colour = ConsoleColor.Magenta;
+                            n.Added = true;
+                        }
+                    }
+                }
+                consoleCharacters.Add(new ConsoleItem { Text = character.ToString(), Colour = symbolConsoleColor, Index = indexCounter });
+                number = null;
+            }
+            indexCounter++;
+        }
+
+        if (number != null)
+        {
+            number.LastOnLine = true;
+            if (symbolSet)
+            {
+                result += number.Value;
+                consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.DarkBlue, Index = number.Index });
+            }
+            else
+            {
+                //check former line if symbol is available
+                if (!String.IsNullOrEmpty(lastLine))
+                {
+                    if (lastLine.Substring(number.SearchStartIndex, number.SearchLength).Any(c => !char.IsDigit(c) && c != '.'))
+                    {
+                        result += number.Value;
+                        consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Blue, Index = number.Index });
+                    }
+                    else
+                    {
+                        currentLineNotUsedNumbers.Add(number);
+                        consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Red, Index = number.Index });
+                    }
+                }
+                else
+                {
+                    currentLineNotUsedNumbers.Add(number);
+                    consoleCharacters.Add(new ConsoleItem { Text = number.ValueString, Colour = ConsoleColor.Red, Index = number.Index });
+                }
+            }
+            number = null;
+            symbolSet = false;
+        }
+        lastLine = line;
+        lastLineNotUsedNumbers = currentLineNotUsedNumbers;
+        consoleCharacterLines.Add(consoleCharacters);
+    }
+
+    foreach (var item in consoleCharacterLines)
+    {
+        foreach (var item2 in item)
+        {
+
+            Console.BackgroundColor = item2.Colour;
+            Console.Write(item2.Text);
+        }
+        Console.WriteLine();
+    }
+
+    var sum = consoleCharacterLines.Sum(l => l
+        .Where(i => i.Colour == ConsoleColor.DarkBlue || i.Colour == ConsoleColor.Blue || i.Colour == ConsoleColor.Cyan || i.Colour == ConsoleColor.Magenta)
+        .Sum(i => long.Parse(i.Text)));
+
+    Console.WriteLine(sum);
+
+    return result;
+}
+
+class ConsoleItem
+{
+    public string Text { get; set; }
+    public ConsoleColor Colour { get; set; }
+    public int Index { get; set; }
+}
+class PartNumber
+{
+    public int Index { get; set; } = -1;
+    public bool LastOnLine { get; set; }
+    public int SearchLength { get { return ValueString == null ? 0 : ValueString.Length + (LastOnLine || Index == 0 ? 1 : 2); } }
+    public int SearchStartIndex { get { return Index == 0 ? 0 : Index - 1; } }
+    public string? ValueString { get; set; }
+    public int Value
+    {
+        get
+        {
+            if (String.IsNullOrEmpty(ValueString))
+            {
+                return 0;
+            }
+            else
+            {
+                return int.Parse(ValueString);
+            }
+        }
+    }
+    public bool Added { get; set; } = false;
+
+    internal bool IndexInRange(int requestedIndex)
+    {
+        return ValueString == null ? false : requestedIndex >= Index - 1 && requestedIndex <= Index + ValueString.Length;
+    }
 }
