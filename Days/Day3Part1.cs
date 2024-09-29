@@ -5,7 +5,7 @@ class Day3Part1 : AbstractDays
     private List<PartNumber> lastLineNotUsedNumbers = new List<PartNumber>();
     public List<List<ConsoleItem>> ConsoleCharacterLines { get; private set; } = new List<List<ConsoleItem>>();
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         List<ConsoleItem> consoleCharacters = new List<ConsoleItem>();
         PartNumber? number = null;
@@ -133,5 +133,8 @@ class Day3Part1 : AbstractDays
             .Sum(i => long.Parse(i.Text)));
 
         Console.WriteLine(sum);
+    }
+    public override void DoFinalThings()
+    {
     }
 }

@@ -6,7 +6,7 @@ class Day2Part1 : AbstractDays
     private readonly int BlueThreshold = 14;
     public int GameCounter { get; private set; }
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         GameCounter++;
         CheckColourThreshold(line, "red", RedThreshold);
@@ -32,5 +32,9 @@ class Day2Part1 : AbstractDays
                 throw new ContinueException();
             }
         }
+    }
+    
+    public override void DoFinalThings()
+    {
     }
 }

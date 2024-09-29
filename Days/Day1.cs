@@ -24,7 +24,7 @@ class Day1 : AbstractDays
         {"9", 9},
         };
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         Tuple<int, int> firstNumberIndexAndValue = new(-1, -1);
         Tuple<int, int> lastNumberIndexAndValue = new(-1, -1);
@@ -52,5 +52,9 @@ class Day1 : AbstractDays
             number = int.Parse($"{firstNumberIndexAndValue.Item2}{lastNumberIndexAndValue.Item2}");
         }
         Result += number;
+    }
+    
+    public override void DoFinalThings()
+    {
     }
 }

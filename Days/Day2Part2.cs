@@ -6,7 +6,7 @@ class Day2Part2 : AbstractDays
     private readonly int BlueThreshold = 14;
     public int GameCounter { get; private set; }
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         int power = GetMinimumColourThreshold(line, "red") *
             GetMinimumColourThreshold(line, "blue") *
@@ -34,5 +34,9 @@ class Day2Part2 : AbstractDays
         }
 
         return lastNumber;
+    }
+    
+    public override void DoFinalThings()
+    {
     }
 }

@@ -9,7 +9,7 @@ class Day3Part2 : AbstractDays
     public List<List<ConsoleItem>> ConsoleCharacterLines { get; private set; } = new List<List<ConsoleItem>>();
     List<Tuple<int, int, List<PartNumber>>> GearList = new List<Tuple<int, int, List<PartNumber>>>();
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         List<ConsoleItem> consoleCharacters = new List<ConsoleItem>();
         PartNumber? number = null;
@@ -137,7 +137,10 @@ class Day3Part2 : AbstractDays
         lastLineNumbers = currentLineNumbers;
         ConsoleCharacterLines.Add(consoleCharacters);
         lineCounter++;
-        // current result after each line
+    }
+    
+    public override void DoFinalThings()
+    {
         Result = GearList.Where(g => g.Item3.Count == 2).Select(g => g.Item3.First().Value * g.Item3.Last().Value).Sum();
     }
 }

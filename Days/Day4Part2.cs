@@ -6,7 +6,7 @@ class Day4Part2 : AbstractDays
 
     int LineCounter = 1;
 
-    public override void DoThings(string line)
+    public override void DoLoopThings(string line)
     {
         int totalCopies = (copiedCardsDictionary.ContainsKey(LineCounter) ? copiedCardsDictionary[LineCounter] : 0) + 1;
         int startIndex = line.IndexOf(":") + 2;
@@ -35,5 +35,9 @@ class Day4Part2 : AbstractDays
 
         Result += totalCopies;
         LineCounter++;
+    }
+
+    public override void DoFinalThings()
+    {
     }
 }
