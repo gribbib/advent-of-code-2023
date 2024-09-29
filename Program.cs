@@ -4,84 +4,12 @@ using Microsoft.VisualBasic;
 
 Console.WriteLine("Hello, World!");
 
+Console.WriteLine(new Day1(){FileName = "puzzle-inputs/input-puzzle-1.txt"}.Run());
 Console.WriteLine(Day3Part2());
-
-static List<int> AllIndexesOf(string str, string value)
-{
-    if (String.IsNullOrEmpty(value))
-        throw new ArgumentException("the string to find may not be empty", "value");
-    List<int> indexes = new List<int>();
-    for (int index = 0; ; index += value.Length)
-    {
-        index = str.IndexOf(value, index);
-        if (index == -1)
-            return indexes;
-        indexes.Add(index);
-    }
-}
-
-int Day1()
-{
-    using var reader = new StreamReader("input-puzzle-1.txt");
-    string line = "";
-    int result = 0;
-    Dictionary<string, int> numberDictionary = new Dictionary<string, int> {
-        {"zero", 0},
-        {"one", 1},
-        {"two", 2},
-        {"three", 3},
-        {"four", 4},
-        {"five", 5},
-        {"six", 6},
-        {"seven", 7},
-        {"eight", 8},
-        {"nine", 9},
-        {"0", 0},
-        {"1", 1},
-        {"2", 2},
-        {"3", 3},
-        {"4", 4},
-        {"5", 5},
-        {"6", 6},
-        {"7", 7},
-        {"8", 8},
-        {"9", 9},
-        };
-    while ((line = reader.ReadLine()) != null)
-    {
-        Tuple<int, int> firstNumberIndexAndValue = new(-1, -1);
-        Tuple<int, int> lastNumberIndexAndValue = new(-1, -1);
-
-        foreach (var item in numberDictionary)
-        {
-            var list = AllIndexesOf(line, item.Key);
-            if (list.Any())
-            {
-                int minIndex = list.Min();
-                if (minIndex < firstNumberIndexAndValue.Item1 || firstNumberIndexAndValue.Item1 == -1)
-                {
-                    firstNumberIndexAndValue = new(minIndex, item.Value);
-                }
-                int maxIndex = list.Max();
-                if (maxIndex > lastNumberIndexAndValue.Item1)
-                {
-                    lastNumberIndexAndValue = new(maxIndex, item.Value);
-                }
-            }
-        }
-        int number = 0;
-        if (firstNumberIndexAndValue.Item2 != -1 && lastNumberIndexAndValue.Item2 != -1)
-        {
-            number = int.Parse($"{firstNumberIndexAndValue.Item2}{lastNumberIndexAndValue.Item2}");
-        }
-        result += number;
-    }
-    return result;
-}
 
 static void CheckColourThreshold(string line, string colour, int colourThreshold)
 {
-    var list = AllIndexesOf(line, colour);
+    var list = line.AllIndexesOf(colour);
     foreach (var index in list)
     {
         // get index of space and then get number between the two space
@@ -98,7 +26,7 @@ static void CheckColourThreshold(string line, string colour, int colourThreshold
 static int GetMinimumColourThreshold(string line, string colour)
 {
     int lastNumber = 1;
-    var list = AllIndexesOf(line, colour);
+    var list = line.AllIndexesOf(colour);
     foreach (var index in list)
     {
         // get index of space and then get number between the two space
@@ -312,7 +240,7 @@ int Day3Part1()
 
 int Day3Part2()
 {
-    var reader = new StreamReader("input-puzzle-3.txt");
+    var reader = new StreamReader("puzzle-inputs/input-puzzle-3.txt");
     string line, lastLine = "";
     int result = 0;
     List<PartNumber> lastLineNumbers = new List<PartNumber>();
@@ -355,7 +283,7 @@ int Day3Part2()
                         {
                             if (lastLine.Substring(number.SearchStartIndex, number.SearchLength).Any(c => c == '*'))
                             {
-                                var indexes = AllIndexesOf(lastLine.Substring(number.SearchStartIndex, number.SearchLength), "*");
+                                var indexes = lastLine.Substring(number.SearchStartIndex, number.SearchLength).AllIndexesOf("*");
                                 foreach (var i in indexes)
                                 {
                                     gearList.First(g => g.Item1 == i + number.SearchStartIndex && g.Item2 == lineCounter - 1).Item3.Add(number);
@@ -423,7 +351,7 @@ int Day3Part2()
                 {
                     if (lastLine.Substring(number.SearchStartIndex, number.SearchLength).Any(c => c == '*'))
                     {
-                        var indexes = AllIndexesOf(lastLine.Substring(number.SearchStartIndex, number.SearchLength), "*");
+                        var indexes = lastLine.Substring(number.SearchStartIndex, number.SearchLength).AllIndexesOf("*");
                         foreach (var i in indexes)
                         {
                             gearList.First(g => g.Item1 == i + number.SearchStartIndex && g.Item2 == lineCounter - 1).Item3.Add(number);
