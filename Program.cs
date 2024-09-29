@@ -18,4 +18,5 @@ Console.WriteLine("Hello, World!");
 // Console.WriteLine(day32.Run());
 // day32.ConsoleCharacterLines.PrintToConsole();
 
-Console.WriteLine(new Day4Part1(){FileName = "puzzle-inputs/input-puzzle-4.txt"}.Run());
+// Console.WriteLine(new Day4Part1(){FileName = "puzzle-inputs/input-puzzle-4.txt"}.Run());
+Console.WriteLine(new Day4Part2(){FileName = "puzzle-inputs/input-puzzle-4.txt"}.Run());

@@ -1,9 +1,6 @@
 
 class Day4Part1 : AbstractDays
-{
-    private string? lastLine;
-    private List<PartNumber> lastLineNotUsedNumbers = new List<PartNumber>();
-    public List<List<ConsoleItem>> ConsoleCharacterLines { get; private set; } = new List<List<ConsoleItem>>();
+{    public List<List<ConsoleItem>> ConsoleCharacterLines { get; private set; } = new List<List<ConsoleItem>>();
 
     public override void DoThings(string line)
     {
