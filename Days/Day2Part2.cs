@@ -1,9 +1,6 @@
 
 class Day2Part2 : AbstractDays
 {
-    private readonly int RedThreshold = 12;
-    private readonly int GreenThreshold = 13;
-    private readonly int BlueThreshold = 14;
     public int GameCounter { get; private set; }
 
     public override void DoLoopThings(string line)
