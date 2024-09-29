@@ -8,7 +8,14 @@ public abstract class AbstractDays
         string line;
         while ((line = reader.ReadLine()) != null)
         {
-            DoThings(line);
+            try
+            {
+                DoThings(line);
+            }
+            catch (ContinueException)
+            {
+                continue;
+            }
         }
         return Result;
     }
