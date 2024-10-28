@@ -2,7 +2,7 @@
 using System.Data;
 using System.Globalization;
 
-class Day5Part1 : AbstractDays
+public class Day5Part1 : AbstractDays
 {
     SeedRelations seedRelations = new SeedRelations();
 
