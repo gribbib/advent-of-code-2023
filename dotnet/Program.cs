@@ -1,9 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Microsoft.VisualBasic;
 
 Console.WriteLine("Hello, World!");
-
+var watch = Stopwatch.StartNew();
 // Console.WriteLine(new Day1(){FileName = "puzzle-inputs/input-puzzle-1.txt"}.Run());
 
 // Console.WriteLine(new Day2Part1(){FileName = "puzzle-inputs/input-puzzle-2.txt"}.Run());
@@ -21,5 +22,7 @@ Console.WriteLine("Hello, World!");
 // Console.WriteLine(new Day4Part1(){FileName = "puzzle-inputs/input-puzzle-4.txt"}.Run());
 // Console.WriteLine(new Day4Part2(){FileName = "puzzle-inputs/input-puzzle-4.txt"}.Run());
 
-// Console.WriteLine(new Day5Part1(){FileName = "puzzle-inputs/input-puzzle-5.txt"}.Run());
-Console.WriteLine(new Day5Part2(){FileName = "puzzle-inputs/input-puzzle-5.txt"}.Run());
+Console.WriteLine(new Day5Part1(){FileName = "puzzle-inputs/input-puzzle-5.txt"}.Run());
+// Console.WriteLine(new Day5Part2() { FileName = "puzzle-inputs/input-puzzle-5.txt" }.Run());
+watch.Stop();
+Console.WriteLine($"Time taken: {watch.ElapsedMilliseconds} ms");
