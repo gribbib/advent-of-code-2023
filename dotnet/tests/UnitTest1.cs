@@ -27,4 +27,20 @@ Distance:  9  40  200" };
         // Assert
         Assert.Equal(71503, result);
     }
+
+    [Fact]
+    public void Day7Part1Test()
+    {
+        // Arrange
+        var day = new Day7Part1() { InputString = @"32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(6440, result);
+    }
 }
