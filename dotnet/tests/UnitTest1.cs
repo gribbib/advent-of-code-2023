@@ -43,4 +43,20 @@ QQQJA 483" };
         // Assert
         Assert.Equal(6440, result);
     }
+
+    [Fact]
+    public void Day7Part2Test()
+    {
+        // Arrange
+        var day = new Day7Part2() { InputString = @"32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(5905, result);
+    }
 }
