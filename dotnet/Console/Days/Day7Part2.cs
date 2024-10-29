@@ -9,6 +9,9 @@ public class Day7Part2 : AbstractDays
     {
         hands.Sort();
         int i = 1;
+        //for bug hunting:
+        // hands.ForEach(h => Console.WriteLine($"{h} * {i} = {h.Points * i}; {Convert.ToInt16(h.HandType)} {String.Join(" ", h.GetComparableIntValuesFromHand())}; {h.HandValue[0]} {h.HandValue[1]} {h.HandValue[2]} {h.HandValue[3]} {h.HandValue[4]}"));
+        // i = 1;
         Result = hands.Select(h => h.Points * i++).Sum();
     }
 

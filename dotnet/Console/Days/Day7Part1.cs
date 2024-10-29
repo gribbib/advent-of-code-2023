@@ -63,7 +63,7 @@ class Hand : IComparable
                         }
                         else
                         {
-                            HandType = HandType.ThreeOfAKind;
+                            HandType = HandType.FullHouse;
                         }
                     }
                     break;
@@ -130,6 +130,11 @@ class Hand : IComparable
 
             return 0;
         }).ToArray();
+    }
+
+    public override string ToString()
+    {
+        return $"{HandValue}({HandType}) - {Points}";
     }
 
     public int CompareTo(object? obj)
