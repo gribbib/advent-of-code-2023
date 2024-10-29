@@ -79,4 +79,56 @@ JJJJ2 41", 6839)]
         // Assert
         Assert.Equal(resultData, result);
     }
+
+    [Theory]
+    [InlineData(@"RL
+
+AAA = (BBB, CCC)
+BBB = (DDD, EEE)
+CCC = (ZZZ, GGG)
+DDD = (DDD, DDD)
+EEE = (EEE, EEE)
+GGG = (GGG, GGG)
+ZZZ = (ZZZ, ZZZ)",2)]
+    [InlineData(@"LLR
+
+AAA = (BBB, BBB)
+BBB = (AAA, ZZZ)
+ZZZ = (ZZZ, ZZZ)", 6)]
+    public void Day8Part1Test(string inputData, int resultData)
+    {
+        // Arrange
+        var day = new Day8Part1() { InputString = inputData };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(resultData, result);
+    }
+
+    [Theory]
+    [InlineData(@"RL
+
+AAA = (BBB, CCC)
+BBB = (DDD, EEE)
+CCC = (ZZZ, GGG)
+DDD = (DDD, DDD)
+EEE = (EEE, EEE)
+GGG = (GGG, GGG)
+ZZZ = (ZZZ, ZZZ)",2)]
+    [InlineData(@"LLR
+
+AAA = (BBB, BBB)
+BBB = (AAA, ZZZ)
+ZZZ = (ZZZ, ZZZ)", 6)]
+    public void Day8Part2Test(string inputData, int resultData)
+    {
+        // Arrange
+        var day = new Day8Part1() { InputString = inputData };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(resultData, result);
+    }
 }

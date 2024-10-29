@@ -29,7 +29,9 @@ var watch = Stopwatch.StartNew();
 // Console.WriteLine(new Day6Part2(){FileName = "puzzle-inputs/input-puzzle-6.txt"}.Run());
 
 // Console.WriteLine(new Day7Part1(){FileName = "puzzle-inputs/input-puzzle-7.txt"}.Run());
-Console.WriteLine(new Day7Part2(){FileName = "puzzle-inputs/input-puzzle-7.txt"}.Run());
+// Console.WriteLine(new Day7Part2(){FileName = "puzzle-inputs/input-puzzle-7.txt"}.Run());
+
+Console.WriteLine(new Day8Part1(){FileName = "puzzle-inputs/input-puzzle-8.txt"}.Run());
 
 watch.Stop();
 Console.WriteLine($"Time taken: {watch.ElapsedMilliseconds} ms");
