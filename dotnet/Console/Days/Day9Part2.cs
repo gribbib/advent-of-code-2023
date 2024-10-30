@@ -1,5 +1,7 @@
-public class Day9Part1 : AbstractDays
+public class Day9Part2 : AbstractDays
 {
+    // following code left in for commenting my original solution
+    long localResult;
     public override void DoFinalThings()
     {
         // not needed
@@ -10,11 +12,14 @@ public class Day9Part1 : AbstractDays
         var historySequence = line.Trim()
             .Split(" ", StringSplitOptions.RemoveEmptyEntries)
             .Select(h => long.Parse(h)).ToArray();
-
-        Result += GetEndingValues(historySequence);
+        // following code left in for commenting my original solution
+        // localResult += GetBeginningValues(historySequence);
+        Array.Reverse(historySequence);
+        Result += Day9Part1.GetEndingValues(historySequence);
     }
 
-    public static long GetEndingValues(long[] inputSequence)
+    // my original solution before finding the hint with "Reverse()"
+    public long GetBeginningValues(long[] inputSequence)
     {
 #if DEBUG
         Console.WriteLine("[{0}]", string.Join(" ", inputSequence));
@@ -37,11 +42,11 @@ public class Day9Part1 : AbstractDays
 #if DEBUG
             Console.WriteLine("[{0}]", string.Join(" ", differenceSequence));
 #endif
-            return inputSequence[differenceLength];
+            return inputSequence[0];
         }
         else
         {
-            return inputSequence[differenceLength] + GetEndingValues(differenceSequence);
+            return inputSequence[0] - GetBeginningValues(differenceSequence);
         }
     }
 }
