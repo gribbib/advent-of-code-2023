@@ -141,4 +141,19 @@ XXX = (XXX, XXX)", 6)]
         // Assert
         Assert.Equal(resultData, result);
     }
+
+    [Theory]
+    [InlineData(@"0 3 6 9 12 15
+1 3 6 10 15 21
+10 13 16 21 30 45", 114)]
+    public void Day9Part1Test(string inputData, int resultData)
+    {
+        // Arrange
+        var day = new Day9Part1() { InputString = inputData };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(resultData, result);
+    }
 }
