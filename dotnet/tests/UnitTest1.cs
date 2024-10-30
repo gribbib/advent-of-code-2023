@@ -49,7 +49,7 @@ QQQJA 483" };
 T55J5 684
 KK677 28
 KTJJT 220
-QQQJA 483",5905)]
+QQQJA 483", 5905)]
     [InlineData(@"2345A 1
 Q2KJJ 13
 Q2Q2Q 19
@@ -89,7 +89,7 @@ CCC = (ZZZ, GGG)
 DDD = (DDD, DDD)
 EEE = (EEE, EEE)
 GGG = (GGG, GGG)
-ZZZ = (ZZZ, ZZZ)",2)]
+ZZZ = (ZZZ, ZZZ)", 2)]
     [InlineData(@"LLR
 
 AAA = (BBB, BBB)
@@ -115,16 +115,26 @@ CCC = (ZZZ, GGG)
 DDD = (DDD, DDD)
 EEE = (EEE, EEE)
 GGG = (GGG, GGG)
-ZZZ = (ZZZ, ZZZ)",2)]
+ZZZ = (ZZZ, ZZZ)", 2)]
     [InlineData(@"LLR
 
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)", 6)]
+    [InlineData(@"LR
+
+11A = (11B, XXX)
+11B = (XXX, 11Z)
+11Z = (11B, XXX)
+22A = (22B, XXX)
+22B = (22C, 22C)
+22C = (22Z, 22Z)
+22Z = (22B, 22B)
+XXX = (XXX, XXX)", 6)]
     public void Day8Part2Test(string inputData, int resultData)
     {
         // Arrange
-        var day = new Day8Part1() { InputString = inputData };
+        var day = new Day8Part2() { InputString = inputData };
 
         // Act
         var result = day.Run();
