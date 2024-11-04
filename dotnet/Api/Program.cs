@@ -23,7 +23,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
+    var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -38,7 +38,21 @@ app.MapGet("/weatherforecast", () =>
 
 app.MapGet("/days/{day}/parts/{part}", (int day, int part) =>
 {
-    return new Day9Part2(){FileName = "../Console/puzzle-inputs/input-puzzle-9.txt"}.Run();
+    var assem = typeof(AbstractDays).Assembly;
+    var t = assem.GetType($"Day{day}Part{part}");
+    if (t == null)
+    {
+        return Results.NotFound("Type could not be generated from input");
+    }
+
+    object abstractDayObject = Activator.CreateInstance(t);
+    if (abstractDayObject != null && abstractDayObject is AbstractDays abstractDay)
+    {
+        abstractDay.FileName = $"../Console/puzzle-inputs/input-puzzle-{day}.txt";
+        return Results.Ok(abstractDay.Run());
+    }
+
+    return Results.BadRequest("Requested input is not valid");
 })
 .WithName("GetDaysResult")
 .WithOpenApi();
