@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "advent-of-code-2023", "Cons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{57AB6767-200B-4AFA-9614-00F81E19F9F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{8AA6AC28-6DB1-4419-9488-6875BE963331}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,5 +49,17 @@ Global
 		{57AB6767-200B-4AFA-9614-00F81E19F9F0}.Release|x64.Build.0 = Release|Any CPU
 		{57AB6767-200B-4AFA-9614-00F81E19F9F0}.Release|x86.ActiveCfg = Release|Any CPU
 		{57AB6767-200B-4AFA-9614-00F81E19F9F0}.Release|x86.Build.0 = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|x64.Build.0 = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Debug|x86.Build.0 = Debug|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|x64.ActiveCfg = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|x64.Build.0 = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|x86.ActiveCfg = Release|Any CPU
+		{8AA6AC28-6DB1-4419-9488-6875BE963331}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
