@@ -171,4 +171,38 @@ XXX = (XXX, XXX)", 6)]
         // Assert
         Assert.Equal(resultData, result);
     }
+
+    [Fact]
+    public void Day202401Part1Test()
+    {
+        // Arrange
+        var day = new Day202401Part1() { InputString = @"3   4
+4   3
+2   5
+1   3
+3   9
+3   3" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(11, result);
+    }
+
+    [Fact]
+    public void Day202401Part2Test()
+    {
+        // Arrange
+        var day = new Day202401Part2() { InputString = @"3   4
+4   3
+2   5
+1   3
+3   9
+3   3" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(31, result);
+    }
 }
