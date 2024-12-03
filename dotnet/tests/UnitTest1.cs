@@ -205,4 +205,105 @@ XXX = (XXX, XXX)", 6)]
         // Assert
         Assert.Equal(31, result);
     }
+
+    [Fact]
+    public void Day202402Part1Test()
+    {
+        // Arrange
+        var day = new Day202402Part1() { InputString = @"7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9
+7 6 4 2 3
+7 6 4 2 6
+5 6 4 2 1
+10 6 4 2 1" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(2, result);
+    }
+
+    [Fact]
+    public void Day202402Part2Test()
+    {
+        // Arrange
+        var day = new Day202402Part2() { InputString = @"7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9
+7 6 4 2 3
+7 6 4 2 6
+5 6 4 2 1
+10 6 4 2 1" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(8, result);
+    }
+
+    [Theory]
+    [InlineData("10 6 4 2 1")]
+    [InlineData("5 6 4 2 1")]
+    [InlineData("7 6 4 2 6")]
+    [InlineData("7 6 4 2 3")]
+    [InlineData("1 3 6 7 9")]
+    [InlineData("8 6 4 4 1")]
+    [InlineData("1 3 2 4 5")]
+    [InlineData("7 6 4 2 1")]
+    [InlineData("1 2 3 4 5")]
+    [InlineData("1 3 5 7 9")]
+    [InlineData("1 4 7 10 13")]
+    [InlineData("5 4 3 2 1")]
+    [InlineData("9 7 5 3 1")]
+    [InlineData("13 10 7 4 1")]
+    [InlineData("2 1 3 4 5")]
+    [InlineData("2 3 1 4 5")]
+    [InlineData("2 3 4 1 5")]
+    [InlineData("2 3 4 5 1")]
+    [InlineData("1 5 6 7 8")]
+    [InlineData("5 1 6 7 8")]
+    [InlineData("5 6 1 7 8")]
+    [InlineData("5 6 7 1 8")]
+    [InlineData("5 6 7 8 1")]
+    [InlineData("31 34 36 38 40 43 46 44")]
+    [InlineData("13 12 11 9 11")]
+    [InlineData("2 1 3 5 8")]
+    [InlineData("16 13 15 13 12 11 9 6")]
+    [InlineData("17 16 13 15 13 12 11 9 6")]
+    [InlineData("80 79 78 75 72 70 71 70")]
+    public void Day202402Part2TestSave(string inputString)
+    {
+        // Arrange
+        var day = new Day202402Part2() { InputString = inputString };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(1, result);
+    }
+
+    [Theory]
+    [InlineData("1 2 7 8 9")]
+    [InlineData("9 7 6 2 1")]
+    [InlineData("9 7 6 8 7")]
+    [InlineData("22 19 18 19 12")]
+    [InlineData("67 69 67 67 64 63 61")]
+    [InlineData("66 69 69 66 63 61 60 57")]
+    public void Day202402Part2TestUnsave(string inputString)
+    {
+        // Arrange
+        var day = new Day202402Part2() { InputString = inputString };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(0, result);
+    }
 }
