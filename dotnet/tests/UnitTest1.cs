@@ -306,4 +306,35 @@ XXX = (XXX, XXX)", 6)]
         // Assert
         Assert.Equal(0, result);
     }
+
+    [Fact]
+    public void Day202403Part1Test()
+    {
+        // Arrange
+        var day = new Day202403Part1() { InputString = "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))" };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(161, result);
+    }
+
+    [Theory]
+    [InlineData("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))", 48)]
+    [InlineData("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))mul(8,5)", 88)]
+    [InlineData("xmul(1,1)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(1,1))mul(1,1)", 3)]
+    [InlineData("xmul(1,1)&mul[3,7]!^mul(1,1)don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(1,1))mul(1,1)", 4)]
+    [InlineData("xmul(1,1)&mul[3,7]!^mul(1,1)don't()_mul(5,5)+mul(32,64](mul(11,8)unmul(1,1)do()?mul(1,1))mul(1,1)", 4)]
+    [InlineData("xmul(1,1)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(1,1))mul(1,1)don't()mul(1,1)", 3)]
+    //TODO: multiline testcase missing
+    public void Day202403Part2Test(string inputData, int expectedResult)
+    {
+        // Arrange
+        var day = new Day202403Part2() { InputString = inputData };
+
+        // Act
+        var result = day.Run();
+        // Assert
+        Assert.Equal(expectedResult, result);
+    }
 }
